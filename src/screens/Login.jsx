@@ -14,29 +14,23 @@ const Login = () => {
     const navigate = useNavigate()
 
     function submitHandler(e) {
-    e.preventDefault()
 
-    axios.post('/users/login', {
-        email,
-        password
-    })
-    .then((res) => {
+        e.preventDefault()
 
-        localStorage.setItem('token', res.data.token)
+        axios.post('/users/login', {
+            email,
+            password
+        }).then((res) => {
+            console.log(res.data)
 
-        navigate('/')
-
-        
-        setTimeout(() => {
+            localStorage.setItem('token', res.data.token)
             setUser(res.data.user)
-        }, 0)
 
-    })
-    .catch((err) => {
-        console.log(err.response?.data)
-    })
-}
-
+            navigate('/')
+        }).catch((err) => {
+            console.log(err.response.data)
+        })
+    }
 
     return (
         <div className="min-h-screen flex items-center justify-center bg-gray-900">
