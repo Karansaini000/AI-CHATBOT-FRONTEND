@@ -14,21 +14,21 @@ const Register = () => {
 
 
     function submitHandler(e) {
-
         e.preventDefault()
 
         axios.post('/users/register', {
             email,
             password
-        }).then((res) => {
-            console.log(res.data)
-            localStorage.setItem('token', res.data.token)
-            setUser(res.data.user)
-            navigate('/')
-        }).catch((err) => {
-            console.log(err.response.data)
+        })
+        .then(() => {
+            
+            navigate('/login')
+        })
+        .catch((err) => {
+            console.log(err.response?.data)
         })
     }
+
 
 
     return (
